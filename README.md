@@ -18,7 +18,7 @@
 
 ## Usage
 
-`npm run local` to run the web server and then connect to [localhost](localhost:5432)
+`npm run local` to run the web server and then connect to [localhost](http://localhost:5592/)
 
 ## Database Structure
 
