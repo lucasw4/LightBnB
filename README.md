@@ -4,6 +4,8 @@
 
 ## Website Image
 
+![Screenshot of website](https://github.com/lucasw4/LightBnB/blob/master/img/website_screenshot_2.png?raw=true)
+
 ## Setup
 
 1. Clone this repository
