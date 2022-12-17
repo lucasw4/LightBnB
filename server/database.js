@@ -128,11 +128,13 @@ const getAllProperties = (options, limit = 10) => {
   FROM properties
   JOIN property_reviews ON properties.id = property_id`;
 
+  // Filter properties by owner id
   if (options.owner_id) {
     queryParams.push(options.owner_id);
     queryString += ` WHERE properties.owner_id = $${queryParams.length}`;
   }
 
+  // Filter properties by city
   if (options.city) {
     queryParams.push(`%${options.city}%`);
     if (queryParams.length > 1) {
@@ -142,6 +144,7 @@ const getAllProperties = (options, limit = 10) => {
     }
   }
 
+  // Filter properties by min and max price
   if (options.minimum_price_per_night && options.maximum_price_per_night) {
     queryParams.push(
       options.minimum_price_per_night * 100,
@@ -162,6 +165,7 @@ const getAllProperties = (options, limit = 10) => {
   queryString += `
   GROUP BY properties.id`;
 
+  // Filter properties by minimum rating
   if (options.minimum_rating) {
     queryParams.push(options.minimum_rating);
     queryString += ` HAVING avg(property_reviews.rating) >= $${queryParams.length}`;
@@ -171,8 +175,6 @@ const getAllProperties = (options, limit = 10) => {
 
   queryString += ` ORDER BY cost_per_night
   LIMIT $${queryParams.length};`;
-
-  console.log(queryString, queryParams);
 
   return pool
     .query(queryString, queryParams)
@@ -212,10 +214,6 @@ const addProperty = function (property) {
     property.number_of_bedrooms,
     property.number_of_bathrooms,
   ];
-
-  console.log(queryString);
-  console.log(property);
-
   return pool
     .query(queryString, values)
     .then((result) => {
