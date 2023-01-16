@@ -13,7 +13,7 @@
 3. Install dependencies with `npm install`
 4. Run the following command to connect to psql `psql -h localhost -p 5432 -U labber lightbnb` and enter the password "123"
 5. Enter command into psql session: `\i migrations/01_schema.sql`
-6. Enter command into psql session: `\i seeds/04_seeds.sql`
+6. Enter command into psql session: `\i seeds/01_seeds.sql`, followed by `\i seeds/02_seeds.sql`
 7. Enter `\q` to exit psql session
 
 ## Usage
